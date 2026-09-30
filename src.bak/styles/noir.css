@@ -1,0 +1,190 @@
+/* ── UX Escape Room · Graphic Novel Noir theme ────────────────────── */
+
+/* ── Custom scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--noir-ink); }
+::-webkit-scrollbar-thumb { background: var(--noir-gold-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--noir-gold); }
+
+/* ── Text selection ─────────────────────────────────────────────── */
+::selection { background: rgba(217,178,106,0.28); color: var(--noir-paper); }
+
+:root {
+  --noir-ink: #12100e;          /* deepest charcoal */
+  --noir-base: #1a1613;         /* warm charcoal background */
+  --noir-graphite: #23201c;     /* deep graphite surface */
+  --noir-graphite-2: #2c2823;   /* raised graphite */
+  --noir-line: rgba(255, 245, 225, 0.09);
+  --noir-paper: #efe7d6;        /* aged paper */
+  --noir-paper-2: #e3d8c2;      /* darker paper */
+  --noir-note: #f4e9b8;         /* sticky note yellow */
+  --noir-note-2: #d7f0d2;       /* mint note */
+  --noir-note-3: #f6d5c8;       /* blush note */
+  --noir-ink-text: #2a241d;     /* ink on paper */
+  --noir-fog: #b8ad99;          /* muted parchment text */
+  --noir-fog-dim: #8a8171;
+  --noir-thread: #b5372e;       /* red investigation string */
+  --noir-gold: #d9b26a;         /* premium accent */
+  --noir-gold-dim: #9c854f;
+  --noir-paper-3: #c9b89b;       /* darkest paper shade */
+  --noir-ink-dim: rgba(18, 16, 14, 0.22); /* subtle border on paper */
+}
+
+.noir-root {
+  background:
+    radial-gradient(120% 90% at 20% -10%, #2a251f 0%, transparent 55%),
+    radial-gradient(130% 100% at 100% 110%, #1d1712 0%, transparent 60%),
+    var(--noir-base);
+  color: var(--noir-fog);
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.font-display { font-family: "Fraunces", Georgia, serif; }
+.font-type { font-family: "Special Elite", "Courier New", monospace; }
+
+/* subtle film grain overlay */
+.noir-grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* vignette */
+.noir-vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 55;
+  box-shadow: inset 0 0 220px 40px rgba(0, 0, 0, 0.65);
+}
+
+/* paper materials */
+.paper {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.15), transparent 40%),
+    var(--noir-paper);
+  color: var(--noir-ink-text);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,0.7), 0 2px 0 rgba(0,0,0,0.15);
+}
+.paper-edge {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 6px, rgba(0,0,0,0.015) 6px 7px);
+}
+
+.tape {
+  position: absolute;
+  width: 78px;
+  height: 26px;
+  background: rgba(226, 214, 180, 0.55);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  border-left: 1px dashed rgba(0,0,0,0.08);
+  border-right: 1px dashed rgba(0,0,0,0.08);
+}
+
+.pin {
+  width: 14px; height: 14px; border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #ff8a7a, var(--noir-thread) 60%, #7c221c);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+
+.stamp {
+  font-family: "Special Elite", monospace;
+  border: 3px solid currentColor;
+  border-radius: 6px;
+  letter-spacing: 0.12em;
+  transform: rotate(-8deg);
+  opacity: 0.85;
+}
+
+.surface {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%),
+    var(--noir-graphite);
+  border: 1px solid var(--noir-line);
+}
+
+@keyframes noir-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.noir-in { animation: noir-in 0.5s ease both; }
+
+@keyframes stamp-slam {
+  0% { opacity: 0; transform: rotate(-8deg) scale(2.4); }
+  60% { opacity: 1; transform: rotate(-8deg) scale(0.9); }
+  100% { opacity: 0.85; transform: rotate(-8deg) scale(1); }
+}
+.stamp-slam { animation: stamp-slam 0.45s cubic-bezier(.2,1.4,.4,1) both; }
+
+@keyframes flicker {
+  0%,100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.4; }
+  94% { opacity: 1; }
+  97% { opacity: 0.7; }
+}
+.flicker { animation: flicker 5s infinite; }
+
+/* ── Glowing gold border pulse ──────────────────────────────────── */
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217,178,106,0); }
+  50% { box-shadow: 0 0 18px 4px rgba(217,178,106,0.22); }
+}
+.gold-pulse { animation: gold-pulse 2.4s ease-in-out infinite; }
+
+/* ── Fade slide up ──────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ── Ambient background pulse ───────────────────────────────────── */
+@keyframes ambient-drift {
+  0%, 100% { opacity: 0.6; transform: scale(1) translate(0, 0); }
+  33% { opacity: 0.8; transform: scale(1.04) translate(2%, 1%); }
+  66% { opacity: 0.5; transform: scale(0.97) translate(-1%, 2%); }
+}
+.ambient-drift { animation: ambient-drift 14s ease-in-out infinite; }
+
+/* ── Paper card hover lift ──────────────────────────────────────── */
+.paper-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.paper-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 48px -18px rgba(0,0,0,0.85), 0 2px 0 rgba(0,0,0,0.15);
+}
+
+/* ── Thread line (red string) ───────────────────────────────────── */
+.thread-line {
+  background: linear-gradient(180deg, transparent 0%, var(--noir-thread) 20%, var(--noir-thread) 80%, transparent 100%);
+  opacity: 0.55;
+}
+
+/* ── Solved overlay backdrop ────────────────────────────────────── */
+.solved-backdrop {
+  background: radial-gradient(ellipse at center, rgba(217,178,106,0.07) 0%, rgba(0,0,0,0.82) 70%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Typewriter cursor blink ────────────────────────────────────── */
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.caret::after {
+  content: "│";
+  margin-left: 2px;
+  animation: caret-blink 1.1s step-start infinite;
+  color: var(--noir-gold);
+  font-weight: 300;
+}

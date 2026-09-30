@@ -1,0 +1,42 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+@import './noir.css';
+
+/* ── Music volume slider ───────────────────────────────────────── */
+.music-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--noir-gold) 0%,
+    var(--noir-gold) calc(var(--val, 40) * 1%),
+    rgba(255,255,255,0.1) calc(var(--val, 40) * 1%),
+    rgba(255,255,255,0.1) 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+.music-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--noir-gold);
+  box-shadow: 0 0 6px rgba(217,178,106,0.6);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.music-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+.music-slider::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: var(--noir-gold);
+  cursor: pointer;
+}

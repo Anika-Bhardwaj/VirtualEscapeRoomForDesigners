@@ -1,0 +1,10 @@
+{
+  "description": "Launch and manage your application seamlessly with an intuitive interface designed for efficient operation and user-friendly control.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
